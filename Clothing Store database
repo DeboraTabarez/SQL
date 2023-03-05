@@ -1,0 +1,24 @@
+create table project_stores (id INTEGER PRIMARY KEY, clothing_type TEXT,price INTEGER, amount_sold INTEGER, amount_returned INTEGER, material TEXT) ; 
+
+insert into project_stores VALUES (1,"coat",80,24,2,"wool");
+insert into project_stores VALUES (2,"jacket",50, 18,4,"leather");
+insert into project_stores VALUES (3, "dress",28, 16,2,"polyester");
+insert into project_stores VALUES (4, "tops",23, 15, 6, "knit");
+insert into project_stores VALUES (5, "pants",55, 19, 12, "denim");
+insert into project_stores values (6, "skirts", 27, 12, 2, "satin");
+insert into project_stores values (7,"shoes", 50, 18,4,"suede");
+insert into project_stores values (8, "jewlerly", 18, 6,3,"metal");
+insert into project_stores values (9, "sweater", 25,10,1,"knit");
+insert into project_stores values (10, "blouses", 20,12,10,"silk");
+insert into project_stores values(11,"hats",10,3,0,"knit");
+insert into project_stores values(12,"scarfs", 8, 5,0,"polyester");
+insert into project_stores values(13,"socks",4,4,0,"knit");
+insert into project_stores values(14,"sunglasses",12,8,2,"plastic");
+insert into project_stores values(15,"belts",10,10,2,"leather");
+
+
+select * from project_stores;
+
+SELECT * FROM project_stores ORDER BY price;
+
+select clothing_type, sum(amount_returned) from project_stores group by clothing_type order by amount_returned desc; 
