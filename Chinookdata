@@ -1,0 +1,58 @@
+/*Show customers who are NOT in the US.*/
+Select customers.CustomerId,customers.FirstName, customers.LastName,
+customers.Country
+From chinook.customers customers
+where country <> 'USA';
+
+/*Show only the customers in Brazil*/
+Select customers.CustomerId,customers.FirstName, customers.LastName,
+customers.Country
+From chinook.customers customers
+where country = 'Brazil';
+
+/* Find the invoices of customers who are from Brazil. Want customer's full name,
+ InvoiceID, Date of the invoice, and billing country"*/
+ 
+Select invoices.InvoiceId, customers.FirstName, customers.LastName,invoices.InvoiceDate, invoices.BillingCountry
+From chinook.customers customers
+inner join chinook.invoices invoices
+on customers.CustomerId = invoices.CustomerId
+where customers.Country = 'Brazil';
+
+/* Show me employees that are Sale Agents*/
+Select employees.FirstName, employees.LastName, employees.Title
+from chinook.employees
+where title like "%Sale%%agent%";
+
+/* Find a unique/distinct list of billing countries from the invoices*/
+Select distinct BillingCountry From invoices;
+
+/* Provide a query that shows the invoices associated with each sales agent.
+The resulting table should include the Sales Agent's full name.*/
+Select employees.LastName, employees.FirstName, invoices.InvoiceId
+From chinook.employees employees 
+join chinook.customers customers
+on customers.SupportRepId = employees.EmployeeId
+join chinook.invoices invoices 
+on invoices.CustomerId = customers.CustomerId;
+
+/*Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices
+and customers*/
+Select customers.FirstName, customers.LastName,customers.Country,invoices.Total, employees.FirstName as Emp_First_Name, employees.LastName as Emp_Last_Name
+from chinook.customers customers
+join chinook.invoices invoices
+on invoices.CustomerId = customers.CustomerId
+join chinook.employees employees
+on customers.SupportRepId = employees.EmployeeId;
+
+/* How many invoices were there in 2009?*/
+select count(invoiceid)
+from invoices
+where invoicedate like "%2009%";
+
+/*What are the total sales for 2009?*/
+Select sum(Total)
+from invoices 
+where invoicedate like "%2009%";
+
+
